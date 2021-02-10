@@ -5,7 +5,12 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter)
 
-import {routes} from './routes';                                       //import router
+// Router imported
+import {routes} from './routes'; 
+
+// Import User Class
+import User from './Helpers/User';
+Window.User = User;
 
 // initiate router
 const router = new VueRouter({

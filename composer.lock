@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e6f58225793fb25e5c122a678bf8eea",
+    "content-hash": "f70e2c7e71c8f6d7df068ef5f4e29b62",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4920,16 +4920,16 @@
         },
         {
             "name": "tymon/jwt-auth",
-            "version": "dev-develop",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tymondesigns/jwt-auth.git",
-                "reference": "ab00f2d7cce5f043067aef7849cdc792de2df635"
+                "reference": "e588cb719539366c0e2f6017f975379cb73e9680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/ab00f2d7cce5f043067aef7849cdc792de2df635",
-                "reference": "ab00f2d7cce5f043067aef7849cdc792de2df635",
+                "url": "https://api.github.com/repos/tymondesigns/jwt-auth/zipball/e588cb719539366c0e2f6017f975379cb73e9680",
+                "reference": "e588cb719539366c0e2f6017f975379cb73e9680",
                 "shasum": ""
             },
             "require": {
@@ -4940,17 +4940,15 @@
                 "lcobucci/jwt": "<3.4",
                 "namshi/jose": "^7.0",
                 "nesbot/carbon": "^1.0|^2.0",
-                "php": "^7.2|^8.0"
+                "php": "^5.5.9|^7.0"
             },
             "require-dev": {
                 "illuminate/console": "^5.2|^6|^7|^8",
                 "illuminate/database": "^5.2|^6|^7|^8",
                 "illuminate/routing": "^5.2|^6|^7|^8",
                 "mockery/mockery": ">=0.9.9",
-                "phpunit/phpunit": "^8.5|^9.4",
-                "yoast/phpunit-polyfills": "^0.2.0"
+                "phpunit/phpunit": "~4.8|~6.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -5002,7 +5000,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-02-02T14:44:28+00:00"
+            "time": "2020-11-27T12:32:42+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -5653,16 +5651,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "ce4861be1a528a36c98416c9954f3014d2500415"
+                "reference": "a18519e96c32894ac3f8775fa8eb6de5750aca5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/ce4861be1a528a36c98416c9954f3014d2500415",
-                "reference": "ce4861be1a528a36c98416c9954f3014d2500415",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/a18519e96c32894ac3f8775fa8eb6de5750aca5a",
+                "reference": "a18519e96c32894ac3f8775fa8eb6de5750aca5a",
                 "shasum": ""
             },
             "require": {
@@ -5708,7 +5706,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-01-26T19:38:10+00:00"
+            "time": "2021-02-09T16:44:58+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -7702,9 +7700,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tymon/jwt-auth": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

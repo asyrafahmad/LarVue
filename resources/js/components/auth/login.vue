@@ -60,6 +60,7 @@ export default {
         }
     },
     methods:{
+        
         login(){
             
             axios.post('/api/auth/login', this.form)

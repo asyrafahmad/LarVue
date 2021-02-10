@@ -16,7 +16,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['login','signup']]);
+        // JWT from middleware is for error handling authentication
+        $this->middleware('JWT', ['except' => ['login','signup']]); 
     }
 
     /**

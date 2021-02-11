@@ -10,7 +10,7 @@ import {routes} from './routes';
 
 // Import User Class
 import User from './Helpers/User';
-Window.User = User;
+window.User = User;
 
 // initiate router
 const router = new VueRouter({

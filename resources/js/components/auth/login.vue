@@ -73,22 +73,17 @@ export default {
     methods:{
 
         login(){
-            
             axios.post('/api/auth/login', this.form)
             .then(res => {
-
                 User.responseAfterLogin(res)                                    // store user token is localStorage server
-
                 Toast.fire({                                                    // sweetAlert success notification
                     icon: 'success',
                     title: 'Signed in successfully'
                 })
-
                 this.$router.push({ name: 'home' })
             })
             .catch(error => this.errors = error.response.data.errors)
             .catch(
-                
                  Toast.fire({                                                    // sweetAlert warning notification
                     icon: 'warning',
                     title: 'Invalid Email or Password'

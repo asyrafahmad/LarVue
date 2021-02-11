@@ -3,19 +3,18 @@ import Token from './Token'
 
 class User {
 
+    // store user token after login in Local Storage
     responseAfterLogin(res){
 
         const access_token = res.data.access_token
         const username = res.data.name
 
         if(Token.isValid(access_token)){
-
             AppStorage.store(access_token,username)
         }
     }
 
     hasToken(){
-
         const storeToken = localStorage.getItem('token');
 
         if(storeToken) {
@@ -23,26 +22,22 @@ class User {
         }
     }
 
+    // User login token
     loggedIn(){
         return this.hasToken()
     }
 
     name(){
-
         if(this.loggedIn()){
             return localStorage.getItem('user');
         }
     }
 
     id(){
-
         if(this.loggedIn()){
-
             const payload = Token.payload(localStorage.getItem('token'));
-
             return payload.sub
         }
-
         return false
     }
 

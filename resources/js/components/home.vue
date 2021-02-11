@@ -329,9 +329,20 @@
     </div>
 </template>
 
-<script>
+<script type="text/javascript">
 
-</script type="text/javascript">
+export default {
+
+    created(){
+        
+        if(!User.loggedIn()){                       // if user not store user login token, then will go back to login page
+            this.$router.push({ name: '/'})
+        }
+    },
+
+}
+  
+</script>
 
 <style type="text/css">
 

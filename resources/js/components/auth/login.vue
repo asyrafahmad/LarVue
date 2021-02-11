@@ -51,7 +51,15 @@
 <script type="text/javascript">
 
 export default {
-  data(){
+
+    
+    created(){
+        if(User.loggedIn()){                        // stay at home page if user login token is still save after logged in
+            this.$router.push({ name: home})
+        }
+    },
+
+    data(){
         return {
             form:{
                 email: null,

@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 // Router imported
 import {routes} from './routes'; 
 
-// Import User Class
+// Import User Class to be use as GLOBAL
 import User from './Helpers/User';
 window.User = User;
 

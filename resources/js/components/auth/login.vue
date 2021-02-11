@@ -67,9 +67,7 @@ export default {
                 email: null,
                 password: null,
             },
-            errors:{
-
-            }
+            errors:{}
         }
     },
     methods:{

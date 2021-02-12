@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <rotuer-link to="" class="btn btn-primary">All Employee</rotuer-link>
+            <router-link to="/employee" class="btn btn-primary">All Employee</router-link>
         </div>
         <div class="row justify-content-center">
             <div class="col-xl-12 col-lg-12 col-md-12">
@@ -18,11 +18,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Full Name" v-model="form.name">
-                                        <small class="text-danger" v-id="errors.name">{{ errors.name[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.name">{{ errors.name[0]}}</small> -->
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Email" v-model="form.email">
-                                        <small class="text-danger" v-id="errors.email">{{ errors.email[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.email">{{ errors.email[0]}}</small> -->
                                     </div>
                                 </div>
                             </div>
@@ -30,11 +30,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Address" v-model="form.address">
-                                        <small class="text-danger" v-id="errors.address">{{ errors.address[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.address">{{ errors.address[0]}}</small> -->
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Salary" v-model="form.salary">
-                                        <small class="text-danger" v-id="errors.salary">{{ errors.salary[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.salary">{{ errors.salary[0]}}</small> -->
                                     </div>
                                 </div>
                             </div>
@@ -42,11 +42,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="date" class="form-control" id="exampleInputFirstName" placeholder="Enter Joining Date" v-model="form.joining_Date">
-                                        <small class="text-danger" v-id="errors.joining_date">{{ errors.joining_Date[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.joining_date">{{ errors.joining_Date[0]}}</small> -->
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Nid" v-model="form.nid">
-                                        <small class="text-danger" v-id="errors.nid">{{ errors.nid[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.nid">{{ errors.nid[0]}}</small> -->
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Phone Number" v-model="form.phone">
-                                        <small class="text-danger" v-id="errors.phone">{{ errors.phone[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.phone">{{ errors.phone[0]}}</small> -->
                                     </div>
                                     <div class="col-md-6">
                                        
@@ -65,7 +65,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="file" class="custom-file-input" id="customFile">
-                                        <small class="text-danger" v-id="errors.photo">{{ errors.photo[0]}}</small>
+                                        <!-- <small class="text-danger" v-id="errors.photo">{{ errors.photo[0]}}</small> -->
                                         <label class="custom-file-label" for="customFile">Choose File</label>
                                     </div>
                                     <div class="col-md-6">

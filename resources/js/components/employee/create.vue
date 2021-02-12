@@ -18,11 +18,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Full Name" v-model="form.name">
-                                        <!-- <small class="text-danger" v-id="errors.name">{{ errors.name[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.name">{{ errors.name[0] }}</small>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Email" v-model="form.email">
-                                        <!-- <small class="text-danger" v-id="errors.email">{{ errors.email[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.email">{{ errors.email[0]}}</small>
                                     </div>
                                 </div>
                             </div>
@@ -30,11 +30,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Address" v-model="form.address">
-                                        <!-- <small class="text-danger" v-id="errors.address">{{ errors.address[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.address">{{ errors.address[0]}}</small>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Salary" v-model="form.salary">
-                                        <!-- <small class="text-danger" v-id="errors.salary">{{ errors.salary[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.salary">{{ errors.salary[0]}}</small>
                                     </div>
                                 </div>
                             </div>
@@ -42,11 +42,11 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="date" class="form-control" id="exampleInputFirstName" placeholder="Enter Joining Date" v-model="form.joining_Date">
-                                        <!-- <small class="text-danger" v-id="errors.joining_date">{{ errors.joining_Date[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.joining_date">{{ errors.joining_Date[0]}}</small>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Nid" v-model="form.nid">
-                                        <!-- <small class="text-danger" v-id="errors.nid">{{ errors.nid[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.nid">{{ errors.nid[0]}}</small>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Phone Number" v-model="form.phone">
-                                        <!-- <small class="text-danger" v-id="errors.phone">{{ errors.phone[0]}}</small> -->
+                                        <small class="text-danger" v-if="errors.phone">{{ errors.phone[0]}}</small>
                                     </div>
                                     <div class="col-md-6">
                                        
@@ -64,12 +64,12 @@
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-6">
-                                        <input type="file" class="custom-file-input" id="customFile">
-                                        <!-- <small class="text-danger" v-id="errors.photo">{{ errors.photo[0]}}</small> -->
+                                        <input type="file" class="custom-file-input" id="customFile" @change="onFileSelected">
+                                        <small class="text-danger" v-if="errors.photo">{{ errors.photo[0]}}</small>
                                         <label class="custom-file-label" for="customFile">Choose File</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <img srv="form.photo" style="height: 40px; width: 40px;">
+                                        <img :src="form.photo" style="height: 40px; width: 40px;">
                                     </div>
                                 </div>
                             </div>
@@ -125,8 +125,31 @@ export default {
     methods:{
 
         employeeInsert(){
+            axios.post('/api/employee',this.form)
+            .then(() => {
+                this.$router.push({ name: 'employee'})                      // direct to all employee page
+                Notification.success()                                      // notify success
+            })
+            .catch(error => this.errors = error.response.data.errors)
+        },
+
+        onFileSelected(event){
+            console.log(event);                                             // view upload image event
+            let file = event.target.files[0];                               // file details location in console event
+            if(file.size > 1048770){                                        // upload image must be less than 1MB
+                Notification.image_validation() 
+                
+            }else{
+                let reader = new FileReader();
+                reader.onload = event => {
+                    this.form.photo = event.target.result
+                    console.log(event.target.result)
+                };
+                reader.readAsDataURL(file)
+            }
 
         }
+
     }
 
 }

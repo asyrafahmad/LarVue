@@ -2268,7 +2268,41 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    employeeInsert: function employeeInsert() {}
+    employeeInsert: function employeeInsert() {
+      var _this = this;
+
+      axios.post('/api/employee', this.form).then(function () {
+        _this.$router.push({
+          name: 'employee'
+        }); // direct to all employee page
+
+
+        Notification.success(); // notify success
+      })["catch"](function (error) {
+        return _this.errors = error.response.data.errors;
+      });
+    },
+    onFileSelected: function onFileSelected(event) {
+      var _this2 = this;
+
+      console.log(event); // view upload image event
+
+      var file = event.target.files[0]; // file details location in console event
+
+      if (file.size > 1048770) {
+        // upload image must be less than 1MB
+        Notification.image_validation();
+      } else {
+        var reader = new FileReader();
+
+        reader.onload = function (event) {
+          _this2.form.photo = event.target.result;
+          console.log(event.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      }
+    }
   }
 });
 
@@ -2813,6 +2847,16 @@ var Notification = /*#__PURE__*/function () {
         type: 'alert',
         layout: 'topRight',
         text: 'Something Went Wrong',
+        timeout: 1000
+      }).show();
+    }
+  }, {
+    key: "image_validation",
+    value: function image_validation() {
+      new Noty({
+        type: 'error',
+        layout: 'topRight',
+        text: 'Upload Image less than 1MB',
         timeout: 1000
       }).show();
     }
@@ -46406,7 +46450,13 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.name
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.name[0]))
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
@@ -46438,7 +46488,13 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.email
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.email[0]))
+                                ])
+                              : _vm._e()
                           ])
                         ])
                       ]),
@@ -46474,7 +46530,13 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.address
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.address[0]))
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
@@ -46506,7 +46568,13 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.salary
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.salary[0]))
+                                ])
+                              : _vm._e()
                           ])
                         ])
                       ]),
@@ -46542,7 +46610,13 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.joining_date
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.joining_Date[0]))
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
@@ -46570,7 +46644,13 @@ var render = function() {
                                   _vm.$set(_vm.form, "nid", $event.target.value)
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.nid
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.nid[0]))
+                                ])
+                              : _vm._e()
                           ])
                         ])
                       ]),
@@ -46606,16 +46686,54 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.phone
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.phone[0]))
+                                ])
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" })
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "form-row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("input", {
+                              staticClass: "custom-file-input",
+                              attrs: { type: "file", id: "customFile" },
+                              on: { change: _vm.onFileSelected }
+                            }),
+                            _vm._v(" "),
+                            _vm.errors.photo
+                              ? _c("small", { staticClass: "text-danger" }, [
+                                  _vm._v(_vm._s(_vm.errors.photo[0]))
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-file-label",
+                                attrs: { for: "customFile" }
+                              },
+                              [_vm._v("Choose File")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("img", {
+                              staticStyle: { height: "40px", width: "40px" },
+                              attrs: { src: _vm.form.photo }
+                            })
+                          ])
+                        ])
+                      ]),
                       _vm._v(" "),
-                      _vm._m(2),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c("hr")
                     ]
@@ -46643,34 +46761,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
         _vm._v("Add Employee")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "form-row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("input", {
-            staticClass: "custom-file-input",
-            attrs: { type: "file", id: "customFile" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            { staticClass: "custom-file-label", attrs: { for: "customFile" } },
-            [_vm._v("Choose File")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("img", {
-            staticStyle: { height: "40px", width: "40px" },
-            attrs: { srv: "form.photo" }
-          })
-        ])
       ])
     ])
   },

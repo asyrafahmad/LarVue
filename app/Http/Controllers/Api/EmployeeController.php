@@ -24,9 +24,30 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|unique:employees|max:255',
+            'email' => 'required',
+            'phone' => 'required',
+        ]);
+
+        //store image
+        if($request->photo){
+            // [START] finding the exact image/file name 
+            $position = strpos($request->photo, ';');
+            $sub = substr($request->photo, 0, $position);
+            $ext = explode('/', $sub)[1];
+            // [END] finding the exact image/file name 
+            
+            $name = time().".".$ext;                                         // naming the file uploaded
+            $img = Image::make($request->photo)->resize(240,200);
+            // TODO: location should be store in storage folder for more secure
+            $upload_path = 'backend/employee/';
+            $image_url = $upload_path.$name;
+            $img->save($image_url);
+        }
+
     }
 
     /**

@@ -2235,6 +2235,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     if (!User.loggedIn()) {
@@ -2249,11 +2257,18 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         name: null,
         email: null,
-        password: null,
-        confirm_password: null
+        phone: null,
+        salary: null,
+        address: null,
+        photo: null,
+        nid: null,
+        joining_date: null
       },
       errors: {}
     };
+  },
+  methods: {
+    employeeInsert: function employeeInsert() {}
   }
 });
 
@@ -46211,10 +46226,11 @@ var render = function() {
                     "form",
                     {
                       staticClass: "user",
+                      attrs: { enctype: "multipart/form-data" },
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
-                          return _vm.signup($event)
+                          return _vm.employeeInsert($event)
                         }
                       }
                     },
@@ -46250,7 +46266,23 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.name,
+                                    expression: "errors.name"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.name[0]))]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
@@ -46282,7 +46314,23 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.email,
+                                    expression: "errors.email"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.email[0]))]
+                            )
                           ])
                         ])
                       ]),
@@ -46318,7 +46366,23 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.address,
+                                    expression: "errors.address"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.address[0]))]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
@@ -46350,7 +46414,23 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.salary,
+                                    expression: "errors.salary"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.salary[0]))]
+                            )
                           ])
                         ])
                       ]),
@@ -46386,7 +46466,23 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.joining_date,
+                                    expression: "errors.joining_date"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.joining_Date[0]))]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" }, [
@@ -46414,7 +46510,23 @@ var render = function() {
                                   _vm.$set(_vm.form, "nid", $event.target.value)
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.nid,
+                                    expression: "errors.nid"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.nid[0]))]
+                            )
                           ])
                         ])
                       ]),
@@ -46450,14 +46562,66 @@ var render = function() {
                                   )
                                 }
                               }
-                            })
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.phone,
+                                    expression: "errors.phone"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.phone[0]))]
+                            )
                           ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "col-md-6" })
                         ])
                       ]),
                       _vm._v(" "),
-                      _vm._m(1),
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("div", { staticClass: "form-row" }, [
+                          _c("div", { staticClass: "col-md-6" }, [
+                            _c("input", {
+                              staticClass: "custom-file-input",
+                              attrs: { type: "file", id: "customFile" }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "small",
+                              {
+                                directives: [
+                                  {
+                                    name: "id",
+                                    rawName: "v-id",
+                                    value: _vm.errors.photo,
+                                    expression: "errors.photo"
+                                  }
+                                ],
+                                staticClass: "text-danger"
+                              },
+                              [_vm._v(_vm._s(_vm.errors.photo[0]))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "custom-file-label",
+                                attrs: { for: "customFile" }
+                              },
+                              [_vm._v("Choose File")]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ])
+                      ]),
                       _vm._v(" "),
                       _vm._m(2),
                       _vm._v(" "),
@@ -46494,28 +46658,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "form-row" }, [
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("input", {
-            staticClass: "custom-file-input",
-            attrs: { type: "file", id: "customFile" }
-          }),
-          _vm._v(" "),
-          _c(
-            "label",
-            { staticClass: "custom-file-label", attrs: { for: "customFile" } },
-            [_vm._v("Choose File")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-md-6" }, [
-          _c("img", {
-            staticStyle: { height: "40px", width: "40px" },
-            attrs: { srv: "form.photo" }
-          })
-        ])
-      ])
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("img", {
+        staticStyle: { height: "40px", width: "40px" },
+        attrs: { srv: "form.photo" }
+      })
     ])
   },
   function() {

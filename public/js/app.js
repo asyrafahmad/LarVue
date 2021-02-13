@@ -46587,8 +46587,8 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.form.joining_Date,
-                                  expression: "form.joining_Date"
+                                  value: _vm.form.joining_date,
+                                  expression: "form.joining_date"
                                 }
                               ],
                               staticClass: "form-control",
@@ -46597,7 +46597,7 @@ var render = function() {
                                 id: "exampleInputFirstName",
                                 placeholder: "Enter Joining Date"
                               },
-                              domProps: { value: _vm.form.joining_Date },
+                              domProps: { value: _vm.form.joining_date },
                               on: {
                                 input: function($event) {
                                   if ($event.target.composing) {
@@ -46605,7 +46605,7 @@ var render = function() {
                                   }
                                   _vm.$set(
                                     _vm.form,
-                                    "joining_Date",
+                                    "joining_date",
                                     $event.target.value
                                   )
                                 }
@@ -46614,7 +46614,7 @@ var render = function() {
                             _vm._v(" "),
                             _vm.errors.joining_date
                               ? _c("small", { staticClass: "text-danger" }, [
-                                  _vm._v(_vm._s(_vm.errors.joining_Date[0]))
+                                  _vm._v(_vm._s(_vm.errors.joining_date[0]))
                                 ])
                               : _vm._e()
                           ]),

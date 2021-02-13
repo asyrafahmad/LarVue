@@ -41,8 +41,8 @@
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-6">
-                                        <input type="date" class="form-control" id="exampleInputFirstName" placeholder="Enter Joining Date" v-model="form.joining_Date">
-                                        <small class="text-danger" v-if="errors.joining_date">{{ errors.joining_Date[0]}}</small>
+                                        <input type="date" class="form-control" id="exampleInputFirstName" placeholder="Enter Joining Date" v-model="form.joining_date">
+                                        <small class="text-danger" v-if="errors.joining_date">{{ errors.joining_date[0]}}</small>
                                     </div>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Nid" v-model="form.nid">

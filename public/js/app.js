@@ -2434,14 +2434,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       form: {
-        name: null,
-        email: null,
-        phone: null,
-        salary: null,
-        address: null,
-        photo: null,
-        nid: null,
-        joining_date: null
+        name: '',
+        email: '',
+        phone: '',
+        salary: '',
+        address: '',
+        photo: '',
+        newphoto: '',
+        nid: '',
+        joining_date: ''
       },
       errors: {}
     };
@@ -2449,16 +2450,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 }, _defineProperty(_created$data$created, "created", function created() {
   var _this = this;
 
-  var id = this.$route.params.id;
-  axios.get('/api/employee/' + id).then(function (_ref) {
+  var id = this.$route.params.id; // get the selected id from URL param
+
+  axios.get('/api/employee/' + id) // to display selected employee based on id
+  .then(function (_ref) {
     var data = _ref.data;
     return _this.form = data;
   })["catch"](console.log('error'));
 }), _defineProperty(_created$data$created, "methods", {
-  employeeInsert: function employeeInsert() {
+  employeeUpdate: function employeeUpdate() {
     var _this2 = this;
 
-    axios.post('/api/employee', this.form).then(function () {
+    var id = this.$route.params.id;
+    axios.patch('/api/employee/' + id, this.form).then(function () {
       _this2.$router.push({
         name: 'employee'
       }); // direct to all employee page
@@ -2472,8 +2476,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   onFileSelected: function onFileSelected(event) {
     var _this3 = this;
 
-    console.log(event); // view upload image event
-
     var file = event.target.files[0]; // file details location in console event
 
     if (file.size > 1048770) {
@@ -2483,8 +2485,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var reader = new FileReader();
 
       reader.onload = function (event) {
-        _this3.form.photo = event.target.result;
-        console.log(event.target.result);
+        _this3.form.newphoto = event.target.result;
       };
 
       reader.readAsDataURL(file);
@@ -47590,7 +47591,7 @@ var render = function() {
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
-                          return _vm.employeeInsert($event)
+                          return _vm.employeeUpdate($event)
                         }
                       }
                     },
@@ -47948,7 +47949,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Submit")]
+        [_vm._v("Update")]
       )
     ])
   }

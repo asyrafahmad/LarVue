@@ -13,7 +13,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Employee Update</h1>
                         </div>
-                        <form class="user" @submit.prevent="employeeInsert" enctype="multipart/form-data">
+                        <form class="user" @submit.prevent="employeeUpdate" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-6">
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-block">Update</button>
                             </div>
                             <hr>
                            
@@ -109,30 +109,32 @@ export default {
     data(){
         return {
             form:{
-                name: null,
-                email: null,
-                phone: null,
-                salary: null,
-                address: null,
-                photo: null,
-                nid: null,
-                joining_date: null,
+                name: '',
+                email: '',
+                phone: '',
+                salary: '',
+                address: '',
+                photo: '',
+                newphoto: '',
+                nid: '',
+                joining_date: '',
             },
             errors:{}
         }
     },
     created(){
-        let id = this.$route.params.id
+        let id = this.$route.params.id                                      // get the selected id from URL param
 
-        axios.get('/api/employee/'+id)
+        axios.get('/api/employee/'+id)                                      // to display selected employee based on id
         .then(({data}) => (this.form = data))
         .catch(console.log('error'))
     },
 
     methods:{
 
-        employeeInsert(){
-            axios.post('/api/employee',this.form)
+        employeeUpdate(){
+            let id = this.$route.params.id
+            axios.patch('/api/employee/'+id,this.form)
             .then(() => {
                 this.$router.push({ name: 'employee'})                      // direct to all employee page
                 Notification.success()                                      // notify success
@@ -141,20 +143,16 @@ export default {
         },
 
         onFileSelected(event){
-            console.log(event);                                             // view upload image event
             let file = event.target.files[0];                               // file details location in console event
             if(file.size > 1048770){                                        // upload image must be less than 1MB
-                Notification.image_validation() 
-                
+                Notification.image_validation()  
             }else{
                 let reader = new FileReader();
                 reader.onload = event => {
-                    this.form.photo = event.target.result
-                    console.log(event.target.result)
+                    this.form.newphoto = event.target.result
                 };
                 reader.readAsDataURL(file)
             }
-
         }
 
     }

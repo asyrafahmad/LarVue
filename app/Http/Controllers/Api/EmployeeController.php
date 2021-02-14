@@ -42,7 +42,7 @@ class EmployeeController extends Controller
         $validateData = $request->validate([
             'name' => 'required|unique:employees|max:255',
             'email' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|unique:employees',
         ]);
 
         //store image

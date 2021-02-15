@@ -55,7 +55,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = DB::table('categories')->where('id',$id)->first();
+        return response()->json($category);
     }
 
     /**
@@ -78,7 +79,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $category = DB::table('categories')->where('id',$id)->update($data);
     }
 
     /**
@@ -89,6 +92,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('categories')->where('id',$id)->delete();
+        
     }
 }

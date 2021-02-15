@@ -88,7 +88,8 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        //
+        $supplier = DB::table('suppliers')->where('id',$id)->first();
+        return response()->json($supplier);
     }
 
     /**
@@ -111,7 +112,41 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['name']           = $request->name;
+        $data['email']          = $request->email;
+        $data['phone']          = $request->phone;
+        $data['shopname']       = $request->shopname;
+        $data['address']        = $request->address;
+        $new_image              = $request->newphoto;
+
+        if($new_image){                                                                             // if NEW image is uploaded
+            // [START] finding the exact image/file name 
+            $position = strpos($new_image, ';');                                                
+            $sub = substr($new_image, 0, $position);                                            // POSITION is at first array
+            $ext = explode('/', $sub)[1];
+            // [END] finding the exact image/file name 
+
+            $name = time().".".$ext;                                                            // NAMING the file uploaded
+            $img = Image::make($new_image)->resize(240,200);
+            // TODO: location should be store in storage folder for more secure
+            $upload_path = 'backend/supplier/';                                                 // storage image location
+            $image_url = $upload_path.$name;                                                    // NAMING the image file with path
+            $success = $img->save($image_url);                                                  // save new image
+
+            if($success){                                                                       // if got NEW IMAGE
+                $data['photo'] = $image_url;                                                    // UPDATE existing data path in DB to new data path
+                $img = DB::table('suppliers')->where('id',$id)->first();                        // FIND the id of image
+                $image_path = $img->photo;                                                      // FIND the existing path of image
+                $done = unlink($image_path);                                                    // UNLINK the existing image path
+                $user = DB::table('suppliers')->where('id',$id)->update($data);                 // UPDATE all data from input form
+            }
+        }
+        else{                                                                                   // if NO image is upload
+            $oldphoto = $request->photo;
+            $data['photo'] = $oldphoto;
+            $user = DB::table('suppliers')->where('id',$id)->update($data);
+        }
     }
 
     /**

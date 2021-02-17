@@ -43264,7 +43264,7 @@ module.exports = function (list, options) {
 /***/ (function(module) {
 
 /*!
-* sweetalert2 v10.14.0
+* sweetalert2 v10.15.1
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -43627,7 +43627,7 @@ module.exports = function (list, options) {
   };
   var getIcon = function getIcon() {
     var visibleIcon = getIcons().filter(function (icon) {
-      return isVisible(icon);
+      return icon.style.display !== 'none';
     });
     return visibleIcon.length ? visibleIcon[0] : null;
   };
@@ -44408,16 +44408,17 @@ module.exports = function (list, options) {
   };
 
   var renderContent = function renderContent(instance, params) {
-    var content = getContent().querySelector("#".concat(swalClasses.content)); // Content as HTML
+    var htmlContainer = getHtmlContainer();
+    applyCustomClass(htmlContainer, params, 'htmlContainer'); // Content as HTML
 
     if (params.html) {
-      parseHtmlToContainer(params.html, content);
-      show(content, 'block'); // Content as plain text
+      parseHtmlToContainer(params.html, htmlContainer);
+      show(htmlContainer, 'block'); // Content as plain text
     } else if (params.text) {
-      content.textContent = params.text;
-      show(content, 'block'); // No content
+      htmlContainer.textContent = params.text;
+      show(htmlContainer, 'block'); // No content
     } else {
-      hide(content);
+      hide(htmlContainer);
     }
 
     renderInput(instance, params); // Custom class
@@ -44705,9 +44706,17 @@ module.exports = function (list, options) {
   };
 
   var renderPopup = function renderPopup(instance, params) {
+    var container = getContainer();
     var popup = getPopup(); // Width
 
-    applyNumericalStyle(popup, 'width', params.width); // Padding
+    if (params.toast) {
+      // #2170
+      applyNumericalStyle(container, 'width', params.width);
+      popup.style.width = '100%';
+    } else {
+      applyNumericalStyle(popup, 'width', params.width);
+    } // Padding
+
 
     applyNumericalStyle(popup, 'padding', params.padding); // Background
 
@@ -46891,7 +46900,7 @@ module.exports = function (list, options) {
     };
   });
   SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '10.14.0';
+  SweetAlert.version = '10.15.1';
 
   var Swal = SweetAlert;
   Swal["default"] = Swal;

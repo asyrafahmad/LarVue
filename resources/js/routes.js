@@ -12,15 +12,20 @@ let storeEmployee = require('./components/employee/create.vue').default;
 let employee = require('./components/employee/index.vue').default;
 let editEmployee = require('./components/employee/edit.vue').default;
 
-// Employee component
+// Supplier component
 let storeSupplier = require('./components/supplier/create.vue').default;
 let supplier = require('./components/supplier/index.vue').default;
 let editSupplier = require('./components/supplier/edit.vue').default;
 
-// Employee component
+// Category component
 let storeCategory = require('./components/category/create.vue').default;
 let category = require('./components/category/index.vue').default;
 let editCategory = require('./components/category/edit.vue').default;
+
+// Product component
+let storeProduct = require('./components/product/create.vue').default;
+let product = require('./components/product/index.vue').default;
+let editProduct = require('./components/product/edit.vue').default;
 
 
 export const routes = [
@@ -44,4 +49,9 @@ export const routes = [
     { path: '/store-category', component: storeCategory, name: 'store-category'},
     { path: '/category', component: category, name: 'category'},
     { path: '/edit-category/:id', component: editCategory, name: 'edit-category'},
+
+    //Product routes
+    { path: '/store-product', component: storeProduct, name: 'store-product'},
+    { path: '/product', component: product, name: 'product'},
+    { path: '/edit-product/:id', component: editProduct, name: 'edit-product'},
 ]

@@ -3791,6 +3791,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
@@ -3802,7 +3806,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      employees: [],
+      products: [],
       searchTerm: ''
     };
   },
@@ -3811,27 +3815,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       // to search the exact input
-      return this.employees.filter(function (employee) {
-        return employee.phone.match(_this.searchTerm);
+      return this.products.filter(function (product) {
+        return product.product_name.match(_this.searchTerm);
       });
     }
   },
   methods: {
-    allEmployee: function allEmployee() {
+    allProduct: function allProduct() {
       var _this2 = this;
 
       // to display all the employees data from db into table
-      axios.get('/api/employee/').then(function (_ref) {
+      axios.get('/api/product/').then(function (_ref) {
         var data = _ref.data;
-        return _this2.employees = data;
+        return _this2.products = data;
       })["catch"]();
     },
-    deleteEmployee: function deleteEmployee(id) {
+    deleteProduct: function deleteProduct(id) {
       var _this3 = this;
 
       Swal.fire({
         title: 'Are you sure?',
-        text: "You wan't be able to revert this!",
+        text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -3856,7 +3860,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }
 }, "created", function created() {
-  this.allEmployee();
+  this.allProduct();
 }));
 
 /***/ }),
@@ -52833,8 +52837,8 @@ var render = function() {
       [
         _c(
           "router-link",
-          { staticClass: "btn btn-primary", attrs: { to: "/store-employee" } },
-          [_vm._v("Add Employee")]
+          { staticClass: "btn btn-primary", attrs: { to: "/store-product" } },
+          [_vm._v("Add Product")]
         )
       ],
       1
@@ -52881,21 +52885,25 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.filterSearch, function(employee) {
-                    return _c("tr", { key: employee.id }, [
-                      _c("td", [_vm._v(" " + _vm._s(employee.name))]),
+                  _vm._l(_vm.filterSearch, function(product) {
+                    return _c("tr", { key: product.id }, [
+                      _c("td", [_vm._v(" " + _vm._s(product.product_name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(" " + _vm._s(product.code))]),
                       _vm._v(" "),
                       _c("td", [
                         _c("img", {
-                          attrs: { src: employee.photo, id: "em_photo" }
+                          attrs: { src: product.image, id: "em_photo" }
                         })
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.phone))]),
+                      _c("td", [_vm._v(_vm._s(product.category_name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.salary))]),
+                      _c("td", [_vm._v(_vm._s(product.buying_price))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(employee.joining_date))]),
+                      _c("td", [_vm._v(_vm._s(product.selling_price))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(product.root))]),
                       _vm._v(" "),
                       _c(
                         "td",
@@ -52906,8 +52914,8 @@ var render = function() {
                               staticClass: "btn btn-sm btn-primary",
                               attrs: {
                                 to: {
-                                  name: "edit-employee",
-                                  params: { id: employee.id }
+                                  name: "edit-product",
+                                  params: { id: product.id }
                                 }
                               }
                             },
@@ -52920,7 +52928,7 @@ var render = function() {
                               staticClass: "btn btn-sm btn-danger",
                               on: {
                                 click: function($event) {
-                                  return _vm.deleteEmployee(employee.id)
+                                  return _vm.deleteProduct(product.id)
                                 }
                               }
                             },
@@ -52961,7 +52969,7 @@ var staticRenderFns = [
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
-          _vm._v("Employee List")
+          _vm._v("Product List")
         ])
       ]
     )
@@ -52974,13 +52982,17 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Photo")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Phone No")]),
+        _c("th", [_vm._v("Category")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Salary")]),
+        _c("th", [_vm._v("Buying Price")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Joining Date")]),
+        _c("th", [_vm._v("Selling Price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Root")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")])
       ])

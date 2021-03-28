@@ -11,7 +11,7 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Product List</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Stock</h6>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
@@ -22,8 +22,8 @@
                         <th>Photo</th>
                         <th>Category</th>
                         <th>Buying Price</th>
-                        <th>Selling Price</th>
-                        <th>Root</th>
+                        <th>Status</th>
+                        <th>Quantity</th>
                         <th>Action</th>
                       </tr>
                     </thead>
@@ -34,11 +34,11 @@
                         <td><img :src="product.image" id="em_photo"></td>
                         <td>{{ product.category_name }}</td>
                         <td>{{ product.buying_price }}</td>
-                        <td>{{ product.selling_price }}</td>
-                        <td>{{ product.root }}</td>
+                        <td v-if="product.product_quantity >= 1"><span class="badge badge-success">Available</span></td>
+                        <td v-else><span class="badge badge-danger">Stock Out</span></td>
+                        <td>{{ product.product_quantity }}</td>
                         <td>
-                            <router-link :to="{name:'edit-product', params:{id:product.id}}" class="btn btn-sm btn-primary">Edit</router-link>
-                            <a @click="deleteProduct(product.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete </font></a>
+                            <router-link :to="{name:'edit-stock', params:{id:product.id}}" class="btn btn-sm btn-primary">Edit</router-link>
                         </td>
                       </tr>
                     </tbody>

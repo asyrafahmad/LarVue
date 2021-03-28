@@ -94,14 +94,14 @@ export default {
             }).then((result) => {
                 if(result.value){
 
-                    axios.delete('/api/employee/'+id)                                           // to delete selected employee based on id
+                    axios.delete('/api/product/'+id)                                           // to delete selected employee based on id
                     .then(() => {
-                        this.employees = this.employees.filter(employee => {
-                            return employee.id != id                                            // ** NOT EQUALLY same with the past id 
+                        this.products = this.products.filter(product => {
+                            return product.id != id                                            // ** NOT EQUALLY same with the past id 
                         })
                     })
                     .catch(() => {
-                        this.$router.push({name: 'employee'})                                   // return back to employee list table
+                        this.$router.push({name: 'product'})                                   // return back to employee list table
                     })
 
                     Swal.fire(

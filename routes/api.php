@@ -20,6 +20,7 @@ Route::apiResource('/supplier','App\Http\Controllers\Api\SupplierController');
 Route::apiResource('/category','App\Http\Controllers\Api\CategoryController');
 Route::apiResource('/product','App\Http\Controllers\Api\ProductController');
 Route::apiResource('/expense','App\Http\Controllers\Api\ExpenseController');
+Route::apiResource('/customer','App\Http\Controllers\Api\CustomerController');
 
 //Salary
 Route::Get('/salary','App\Http\Controllers\Api\SalaryController@allSalary');

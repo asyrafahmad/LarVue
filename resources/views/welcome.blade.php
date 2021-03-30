@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{ asset('backend/img/logo/logo.png')}}" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title>Easy Learning Inventory</title>
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css')}}">
   <link href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{ asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
@@ -30,13 +30,18 @@
           <div class="sidebar-brand-icon">
             <img src="{{ asset('backend/img/logo/logo2.png')}}">
           </div>
-          <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+          <div class="sidebar-brand-text mx-3">Easy Inventory</div>
         </a>
         <hr class="sidebar-divider my-0">
         <li class="nav-item active">
           <router-link class="nav-link" to="/home">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></router-link>
+        </li>
+        <li class="nav-item bg-info">
+          <router-link class="nav-link" to="/home">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>POS</span></router-link>
         </li>
         <hr class="sidebar-divider">
         <div class="sidebar-heading">
@@ -108,6 +113,19 @@
           </div>
         </li>
         <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap6"
+            aria-expanded="true" aria-controls="collapseBootstrap6">
+            <i class="far fa-fw fa-window-maximize"></i>
+            <span>Customers</span>
+          </a>
+          <div id="collapseBootstrap6" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <router-link class="collapse-item" to="/store-customer">Add Customer</router-link>
+              <router-link class="collapse-item" to="/customer">All customer</router-link>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
             aria-expanded="true" aria-controls="collapseBootstrap5">
             <i class="far fa-fw fa-window-maximize"></i>
@@ -126,7 +144,20 @@
             <span>Stock</span>
           </router-link>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
+            aria-expanded="true" aria-controls="collapseBootstrap5">
+            <i class="far fa-fw fa-window-maximize"></i>
+            <span>Reports</span>
+          </a>
+          <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <router-link class="collapse-item" to="/store-customer">Report</router-link>
+              <router-link class="collapse-item" to="/customer">Report Two</router-link>
+            </div>
+          </div>
+        </li>
+        
 
 
 

@@ -17,7 +17,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customer = DB::table('customers')->orderBy('id','DESC')->get();
+        return response()->json($customer);
     }
 
     /**
@@ -85,7 +86,8 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        //
+        $customer = DB::table('customers')->where('id',$id)->first();
+        return response()->json($customer);
     }
 
     /**
@@ -108,7 +110,40 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = array();
+        $data['name']           = $request->name;
+        $data['email']          = $request->email;
+        $data['phone']          = $request->phone;
+        $data['address']        = $request->address;
+        $new_image              = $request->newphoto;
+
+        if($new_image){                                                                             // if NEW image is uploaded
+            // [START] finding the exact image/file name 
+            $position = strpos($new_image, ';');                                                
+            $sub = substr($new_image, 0, $position);                                            // POSITION is at first array
+            $ext = explode('/', $sub)[1];
+            // [END] finding the exact image/file name 
+
+            $name = time().".".$ext;                                                            // NAMING the file uploaded
+            $img = Image::make($new_image)->resize(240,200);
+            // TODO: location should be store in storage folder for more secure
+            $upload_path = 'backend/customer/';                                                 // storage image location
+            $image_url = $upload_path.$name;                                                    // NAMING the image file with path
+            $success = $img->save($image_url);                                                  // save new image
+
+            if($success){                                                                       // if got NEW IMAGE
+                $data['photo'] = $image_url;                                                    // UPDATE existing data path in DB to new data path
+                $img = DB::table('customers')->where('id',$id)->first();                        // FIND the id of image
+                $image_path = $img->photo;                                                      // FIND the existing path of image
+                $done = unlink($image_path);                                                    // UNLINK the existing image path
+                $cust = DB::table('customers')->where('id',$id)->update($data);                 // UPDATE all data from input form
+            }
+        }
+        else{                                                                                   // if NO image is upload
+            $oldphoto = $request->photo;
+            $data['photo'] = $oldphoto;
+            $cust = DB::table('customers')->where('id',$id)->update($data);
+        }
     }
 
     /**
@@ -119,6 +154,15 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = DB::table('customers')->where('id',$id)->first();           // get all the data from id
+        $photo = $customer->photo;
+
+        if($photo){
+            unlink($photo);                                                     // unlink image path
+            DB::table('customers')->where('id',$id)->delete();
+        }
+        else{
+            DB::table('customers')->where('id',$id)->delete();
+        }
     }
 }

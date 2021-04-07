@@ -94,6 +94,6 @@ export const routes = [
 
     //Customer routes
     { path: '/store-customer', component: storeCustomer, name: 'store-customer'},
-    { path: '/store-customer', component: customer, name: 'customer'},
+    { path: '/customer', component: customer, name: 'customer'},
     { path: '/edit-customer/:id', component: editCustomer, name: 'edit-customer'},
 ]

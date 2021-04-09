@@ -16,7 +16,6 @@
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
-                 
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
@@ -30,18 +29,41 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Products Sold</h6>
                 </div>
-                <div class="card-body">
-                  <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="product in filtersearch" :key="product.id">
-                      <div class="row">
-                          <div class="card" style="width: 8.5rem;">
-                              <img ;src="product.image" id="em_photo" class="card-img-top" alt="...">
-                              <div class="card-body">
-                                  <h5 class="card-title">{{ product.product_name }}</h5>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                </div>
+                 <!-- Category Wise Product -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">All Product</a> 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home" aria-selected="true"> </a> 
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a> 
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="card-body">
+                                <input type="text" class="form-control" style="width: 550px" placeholder="Search here" v-model="searchTerm">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-6 col-6" v-for="product in filterSearch" :key="product.id">
+                                        <a href="#">
+                                            <div class="card" style="width: 8.5rem; margin-bottom: 5px">
+                                                <img :src="product.image" id="em_photo" class="card-img-top" alt="...">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">{{ product.product_name }}</h6>
+                                                    <span  v-if="product.product_quantity >= 1" class="badge badge-success">Available {{ product.product_quantity }}</span>
+                                                    <span v-else class="badge badge-danger">Stock Out</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- End Category Wise Product -->
+             
               </div>
             </div>
           </div>
@@ -121,10 +143,10 @@ export default {
 </script>
 
 
-<style type="text/css">
+<style type="text/css" scoped>
 
 #em_photo{
-    height: 40px;
-    width:40px; 
+    height: 90px;
+    width: 135px; 
 }
 </style>
